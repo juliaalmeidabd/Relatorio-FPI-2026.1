@@ -9,4 +9,4 @@ Questão mais trabalhosa, que exigia conhecimento de fórmulas matemáticas que 
 ## Questão 3
 
 ## Questão 4
-
+No início tive dificuldade para vizualizar a questão, então decidi desenhar os quadrantes e as possibilidades no papel, para facilitar meu entendimento. Ainda estava achando o enunciado um pouco confuso, então recorri ao notebookln para me ajudar a interpretar. Usei o claude.ai para descobrir por qual caminho (x ou y) ele seguiria primeiro, porém achei confuso e acabei conseguindo fazer sozinha. No fim preferi minha resolução.
