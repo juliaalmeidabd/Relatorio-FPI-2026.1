@@ -1,114 +1,113 @@
 #include <stdio.h>
 
 int main(void) {
+    int total, pa, pb, pc;
+    int sobra = 0;
+    int dinheiro_r = 3;
+    int A, B, C;
 
-    int x, y, c;
-    scanf("%d %d %d", &x, &y, &c);
+    //vari�veis para controlar se ela investiu ou se foi possivel dividir o prêmio direto
+    int investiu = 0;
+    int dividiu = 0;
 
-    int quad_inicial;
-    int quad_destino;
+    scanf("%d %d %d %d", &total, &pa, &pb, &pc);
 
-    //descobrindo o quadrante inicial
+    A = total * pa / 100;
+    B = total * pb / 100;
+    C = total * pc / 100;
 
-    if (x > 0 && y > 0){
-            quad_inicial = 1; //coordenadas (+,+)
-        }
-    else if (x > 0 && y < 0){
-            quad_inicial = 4; //coordenadas (+,-)
-        }
-    else if (x < 0 && y > 0){
-            quad_inicial = 2; //coordenadas (-,+)
-        }
+    //se as porcentagens de cada um forem em valores inteiros
+    if ((total * pa % 100 == 0) && (total * pb % 100 == 0) && (total * pc % 100 == 0)){ 
+        sobra = total - (A + B + C);
+        investiu = 0;
+        dividiu =1;
+    }
+
+    //se as porcentagens de cada um não forem valores inteiros
     else{
-            quad_inicial = 3; //coordenadas (-,-)
-        }
+        int i1 = total + 1; //primeiro investimento
+        int i2 = total + 2; //segundo investimento
+        int i3 = total + 3; //terceiro investimento
 
-    //definindo o quadrante de destino
-    if (quad_inicial == 1){
-        quad_destino = 3;
-    }
-    else if(quad_inicial == 2){
-        quad_destino = 4;
-    }
-    else if(quad_inicial == 3){
-        quad_destino = 1;
-    }
-    else{
-        quad_destino = 2;
-    }
-
-    //coordenadas de cada quadrante de destino
-    int x_dest, y_dest;
-
-    if (quad_destino == 1){
-        x_dest = 1, y_dest = 1;
-    }
-    else if (quad_destino == 2){
-        x_dest = -1, y_dest = 1;
-    }
-    else if (quad_destino == 3){
-        x_dest = -1, y_dest = -1;
-    }
-    else{
-        x_dest = 1, y_dest = -1;
-    }
-
-    //caminhada inv�lida
-
-    if (c == quad_inicial || c == quad_destino){
-        puts("caminhada invalida");
-    }
-
-    //evitando o adjacente
-
-    //c�lculo dos passos
-    int passos_x = x_dest - x;
-    int passos_y = y_dest - y;
-
-    if (passos_x < 0) passos_x = -passos_x;
-    if (passos_y < 0) passos_y = -passos_y;
-
-    //decidindo por qual caminho vai iniciar
-    if (quad_inicial == 2 || quad_inicial == 4){ //se iniciar no 1° ou 4° quadrante
-
-        if (c == 1){ //evitando o 1 quad
-            if (quad_inicial == 2){ //vai por y primeiro
-                printf("%d passos em y e %d passos em x\n", passos_y, passos_x);
-            }
-            else if (quad_inicial == 4){ //vai por x primeiro
-                printf("%d passos em x e %d passos em y\n", passos_x, passos_y);
+        if ((i1 * pa % 100 == 0) && (i1 * pb % 100 == 0) && (i1 * pc % 100 == 0)){
+            A = i1 * pa / 100;
+            B = i1 * pb / 100;
+            C = i1 * pc / 100;
+            sobra = i1 - A - B - C;
+            if (sobra > 1) {
+                investiu = 1;
+                dividiu = 1;
             }
         }
-
-        else if (c == 3){ //evitando o 3 quad
-            if (quad_inicial == 2){ //vai por x primeiro
-                printf("%d passos em x e %d passos em y\n", passos_x, passos_y);
-            }
-            else if (quad_inicial == 4){ //vai por y primeiro
-                printf("%d passos em y e %d passos em x\n", passos_y, passos_x);
+        else if ((i2 * pa % 100 == 0) && (i2 * pb % 100 == 0) && (i2 * pc % 100 == 0)){
+            A = i2 * pa / 100;
+            B = i2 * pb / 100;
+            C = i2 * pc / 100;
+            sobra = i2 - A - B - C;
+            if (sobra > 2) {
+                investiu = 2;
+                dividiu = 1;
             }
         }
+        else if ((i3 * pa % 100 == 0) && (i3 * pb % 100 == 0) && (i3 * pc % 100 == 0)){
+            A = i3 * pa / 100;
+            B = i3 * pb / 100;
+            C = i3 * pc / 100;
+            sobra = i3 - A - B - C;
+            if (sobra > 3) {
+                investiu = 3;
+                dividiu = 1;
+            }
+        }
+    }
+        //se não for possível dividir
+        if (dividiu == 0){
+            puts("Nao foi dessa vez que Rebeka pode ajudar...");
+        }
+        //se der pra dividir
+        else {
+            printf("Cada homem ficou com %d, %d e %d reais, respectivamente\n", A, B, C);
+        }
 
-    }else if (quad_inicial == 1 || quad_inicial == 3){ //se iniciar no 1° ou 4° quadrante
+        //se investir 2 reais
+        if (dividiu && investiu == 2){
+            char c1, c2, c3;
+            scanf(" %c %c %c", &c1, &c2, &c3);
+
+            //vai somar as trÊs letras recebidas
+            int soma = (c1 - 'a' + 1) + (c2 - 'a' + 1) + (c3 - 'a' + 1); //em c cada letra possui um valor, sendo o a = 97, b = 98...
+            printf("%d\n", soma);
+        }
+
+        //se investir 3 reais
+        else if (dividiu && investiu == 3){
+            int x, y, z; //idade dos homens
+            int parcelas = 0;
+            scanf("%d %d %d", &y, &x, &z);
+
+            //descobrindo a quantidade de parcelas
+            if(x % 3 == 0){
+                parcelas += x / 3;
+            } 
+            if (y % 3 == 0){
+                parcelas += y / 3;
+            }
+            if (z % 3 == 0){
+                parcelas += z / 3; //o total de parcelas vai sendo adicionado
+            }
+            printf("%d\n", parcelas);
+        }
         
-        if (c == 2){ //evitando o 2 quad
-            if (quad_inicial == 1){ //vai por y primeiro
-                printf("%d passos em y e %d passos em x\n", passos_y, passos_x);
-            }
-            else if (quad_inicial == 3){ //vai por x primeiro
-                printf("%d passos em x e %d passos em y\n", passos_x, passos_y);
-            }
-
-        else if (c == 4){ //evitando o 4 quad
-            if (quad_inicial == 1){ //vai por x primeiro
-                printf("%d passos em x e %d passos em y\n", passos_x, passos_y);
-            }
-            else if (quad_inicial == 3){ //vai por y primeiro
-                printf("%d passos em y e %d passos em x\n", passos_y, passos_x);
-            }
+        //dinheiro final de rebeka
+        if (dividiu > 0) {
+            dinheiro_r += (sobra - investiu);
         }
+        //frase final, se consegui ou não voltar pra casa
+        if (dividiu && dinheiro_r >= 7) {
+            puts("Ela conseguiu! Rebeka voltou para casa e apanhou da mae por sumir noite passada!");
+        }
+        else {
+            puts("E parece que Rebeka vai ter que voltar andando...");
+        }
+        return 0;
     }
-}
-
-    return 0;
-}
