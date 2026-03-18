@@ -15,7 +15,7 @@ int main() {
             printf(".");
         }
 
-        //sequ�ncia de letras at� a letra da linha
+        //sequência de letras até a letra da linha
         for (char sequencia_letras = 'A'; sequencia_letras <= letra_linha; sequencia_letras++) {
             printf("%c", sequencia_letras);
         }
