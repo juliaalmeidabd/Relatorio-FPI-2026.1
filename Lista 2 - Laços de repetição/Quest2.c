@@ -26,7 +26,7 @@ int main (void){
                 fatores_impares += 1;
                 numero = numero / j;
 
-                if (numero % j == 0) { //se ainda for divis�vel por f, é inválido
+                if (numero % j == 0) { //se ainda for divisível por f, é inválido
                     valido = 0; //encerra o for
                 }
             }
