@@ -21,14 +21,13 @@ int main() {
         }
     }
 
-    //Pedro começa no ponto (0,0)
-    //registra a posição inicial só uma vez.
-    registrar_passagem(cidade, x, y);
-
     //loop para ler exatamente as 20 variaveis
     for (int i = 0; i < 20; i++) {
         //espaco antes de %c ignora o enter e espacos
         if (scanf(" %c", &comando) == 1) {
+
+            //registra a posição antes de mover
+            registrar_passagem(cidade, x, y);
             
             //comandos para movimentação
             if (comando == 'c' && x > 0) {
@@ -43,11 +42,11 @@ int main() {
             else if (comando == 'd' && y < 3) {
                 y = y + 1;
             }
-
-            //registra a nova posição após o movimento
-            registrar_passagem(cidade, x, y);
         }
     }
+
+    //registra a posição final (após o último movimento)
+    registrar_passagem(cidade, x, y);
 
     //encontrando a posição mais visitada
     int max = cidade[0][0];
