@@ -1,6 +1,7 @@
 # Relatório da 5° lista de FPI
 
 ## Questão 1 - O Vício de Krebs
+Foi a questão mais difícil da lista, e precisei usar IA para entender a lógica como iria estruturá-la. Precisei pesquisar bastante sobre alocação dinâmica para conseguir terminar.
 
 ## Questão 2 - Mapa Vazio
 Por ter sido a primeira questão que eu resolvi usando ponteiros e alocação dinâmica, eu senti um pouco de dificuldade, pois não estava familiarizada. Consegui estruturar com base nos meus estudos do pdf e na aula, mas usei o gemini para a correção de alguns erros nos códigos e aceitei algumas sugestões de boas práticas.
