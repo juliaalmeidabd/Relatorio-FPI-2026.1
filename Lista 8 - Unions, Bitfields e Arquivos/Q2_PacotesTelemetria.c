@@ -58,7 +58,7 @@ uint32_t entradaHex;
     //percorre o vetor dinamico do início até o total de pacotes que foram realmente lidos
     for (int i = 0; i < totalPacotes; i++) {
 
-        //exibe o indice do pacote e o valor bruto formatado em hexadecimal com 8 digitos preenchidos com zeros (%08X)
+        //exibe o indice do pacote e o valor bruto formatado em hexadecimal (letras maiusculas) com 8 digitos (preenche com zeros a esquerda se necessario) (%08X)
         printf("Pacote [%d] - Dado Bruto: 0x%08X\n", i + 1, vetorPacotes[i].rawData);
         printf("ID do Sensor : %d\n", vetorPacotes[i].campos.idSensor);
         printf("Status : %d\n", vetorPacotes[i].campos.status);
